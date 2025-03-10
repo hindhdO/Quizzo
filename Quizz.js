@@ -9,10 +9,7 @@ let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let questions = [];
 
-function render(){
-
-}
-async function fetchQuizzData() {
+async function render(){
     try {
         console.log("Envoi de la requête...");
         
@@ -22,18 +19,20 @@ async function fetchQuizzData() {
         const response = await fetch(quizURL);
         const data = await response.json();
 
-        questions = data.results; 
-
-    
-        
-        if (questions.length > 0) {
-            showQuestion(questions[currentQuestionIndex]); 
-        } else {
-            alert("Aucune question trouvée avec ces critères. Essayez une autre configuration.");
-        }
+        questions = data.results;
     } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
     }
+}
+
+function fetchQuizzData() {
+    
+    if (questions.length > 0) {
+        showQuestion(questions[currentQuestionIndex]); 
+    } else {
+        alert("Aucune question trouvée avec ces critères. Essayez une autre configuration.");
+    }
+    
 }
 
 function showQuestion(questionData) {
@@ -98,4 +97,13 @@ function toggleCustomOptions() {
 }
 
 
-fetchQuizzData();
+async function initQuiz() {
+    await render();  
+    if (questions.length > 0) {  
+        fetchQuizzData(); 
+    } else {
+        console.error("Aucune question récupérée. Problème avec l'API ?");
+    }
+}
+
+initQuiz(); 
