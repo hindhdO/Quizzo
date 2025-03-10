@@ -78,13 +78,13 @@ if (customStartButton) {
 
         console.log("URL générée :", URL);
         localStorage.setItem("quizURL", URL);
-        window.location.href = "/Quizz.html";
+        window.location.href = "./Quizz.html";
     });
 }
 
 function startQuiz() {
     localStorage.setItem("quizURL", "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple");
-    window.location.href = "/Quizz.html"; 
+    window.location.href = "./Quizz.html"; 
 }
 
 function toggleCustomOptions() {
