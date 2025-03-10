@@ -9,6 +9,9 @@ let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let questions = [];
 
+function render(){
+
+}
 async function fetchQuizzData() {
     try {
         console.log("Envoi de la requête...");
@@ -20,6 +23,8 @@ async function fetchQuizzData() {
         const data = await response.json();
 
         questions = data.results; 
+
+    
         
         if (questions.length > 0) {
             showQuestion(questions[currentQuestionIndex]); 
